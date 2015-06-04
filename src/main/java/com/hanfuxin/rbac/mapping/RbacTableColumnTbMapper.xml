@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hanfuxin.rbac.dao.RbacTableColumnTbMapper">
+	<resultMap id="BaseResultMap" type="com.hanfuxin.rbac.model.RbacTableColumnTb">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="columnname" property="columnname" jdbcType="VARCHAR" />
+		<result column="tableid" property="tableid" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List"> id, columnname, tableid
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from rbactablecolumn_tb where id = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String"> delete from rbactablecolumn_tb where id = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.hanfuxin.rbac.model.RbacTableColumnTb"> insert into rbactablecolumn_tb (id, columnname, tableid ) values (#{id,jdbcType=VARCHAR}, #{columnname,jdbcType=VARCHAR}, #{tableid,jdbcType=VARCHAR} )
+	</insert>
+	<insert id="insertSelective" parameterType="com.hanfuxin.rbac.model.RbacTableColumnTb">
+		insert into rbactablecolumn_tb
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null"> id,
+			</if>
+			<if test="columnname != null"> columnname,
+			</if>
+			<if test="tableid != null"> tableid,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null"> #{id,jdbcType=VARCHAR},
+			</if>
+			<if test="columnname != null"> #{columnname,jdbcType=VARCHAR},
+			</if>
+			<if test="tableid != null"> #{tableid,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.hanfuxin.rbac.model.RbacTableColumnTb">
+		update rbactablecolumn_tb
+		<set>
+			<if test="columnname != null"> columnname = #{columnname,jdbcType=VARCHAR},
+			</if>
+			<if test="tableid != null"> tableid = #{tableid,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.hanfuxin.rbac.model.RbacTableColumnTb"> update rbactablecolumn_tb set columnname = #{columnname,jdbcType=VARCHAR}, tableid = #{tableid,jdbcType=VARCHAR} where id = #{id,jdbcType=VARCHAR}
+	</update>
+</mapper>

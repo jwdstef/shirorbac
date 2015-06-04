@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hanfuxin.rbac.dao.RbacUrlTbMapper">
+	<resultMap id="BaseResultMap" type="com.hanfuxin.rbac.model.RbacUrlTb">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="urlName" property="urlname" jdbcType="VARCHAR" />
+		<result column="fullurl" property="fullurl" jdbcType="VARCHAR" />
+		<result column="shorturl" property="shorturl" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List"> id, urlName, fullurl, shorturl
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from rbacurl_tb where id = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String"> delete from rbacurl_tb where id = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.hanfuxin.rbac.model.RbacUrlTb"> insert into rbacurl_tb (id, urlName, fullurl, shorturl) values (#{id,jdbcType=VARCHAR}, #{urlname,jdbcType=VARCHAR}, #{fullurl,jdbcType=VARCHAR}, #{shorturl,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.hanfuxin.rbac.model.RbacUrlTb">
+		insert into rbacurl_tb
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null"> id,
+			</if>
+			<if test="urlname != null"> urlName,
+			</if>
+			<if test="fullurl != null"> fullurl,
+			</if>
+			<if test="shorturl != null"> shorturl,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null"> #{id,jdbcType=VARCHAR},
+			</if>
+			<if test="urlname != null"> #{urlname,jdbcType=VARCHAR},
+			</if>
+			<if test="fullurl != null"> #{fullurl,jdbcType=VARCHAR},
+			</if>
+			<if test="shorturl != null"> #{shorturl,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.hanfuxin.rbac.model.RbacUrlTb">
+		update rbacurl_tb
+		<set>
+			<if test="urlname != null"> urlName = #{urlname,jdbcType=VARCHAR},
+			</if>
+			<if test="fullurl != null"> fullurl = #{fullurl,jdbcType=VARCHAR},
+			</if>
+			<if test="shorturl != null"> shorturl = #{shorturl,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.hanfuxin.rbac.model.RbacUrlTb"> update rbacurl_tb set urlName = #{urlname,jdbcType=VARCHAR}, fullurl = #{fullurl,jdbcType=VARCHAR}, shorturl = #{shorturl,jdbcType=VARCHAR} where id = #{id,jdbcType=VARCHAR}
+	</update>
+</mapper>

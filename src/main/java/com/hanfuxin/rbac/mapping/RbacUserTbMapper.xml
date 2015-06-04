@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hanfuxin.rbac.dao.RbacUserTbMapper">
+	<resultMap id="BaseResultMap" type="com.hanfuxin.rbac.model.RbacUserTb">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="userId" property="userid" jdbcType="VARCHAR" />
+		<result column="usergroupId" property="usergroupid" jdbcType="VARCHAR" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="VARCHAR" />
+		<result column="email" property="email" jdbcType="VARCHAR" />
+		<result column="phone" property="phone" jdbcType="VARCHAR" />
+		<result column="niCheng" property="nicheng" jdbcType="VARCHAR" />
+		<result column="deptId" property="deptid" jdbcType="VARCHAR" />
+		<result column="status" property="status" jdbcType="VARCHAR" />
+		<result column="lastLoginTime" property="lastlogintime" jdbcType="DATE" />
+	</resultMap>
+	<sql id="Base_Column_List"> id, userId, usergroupId, username, password, email, phone, niCheng, deptId, status, lastLoginTime
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from rbacuser_tb where id = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String"> delete from rbacuser_tb where id = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.hanfuxin.rbac.model.RbacUserTb"> insert into rbacuser_tb (id, userId, usergroupId, username, password, email, phone, niCheng, deptId, status, lastLoginTime) values (#{id,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{usergroupid,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{nicheng,jdbcType=VARCHAR}, #{deptid,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{lastlogintime,jdbcType=DATE})
+	</insert>
+	<insert id="insertSelective" parameterType="com.hanfuxin.rbac.model.RbacUserTb">
+		insert into rbacuser_tb
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null"> id,
+			</if>
+			<if test="userid != null"> userId,
+			</if>
+			<if test="usergroupid != null"> usergroupId,
+			</if>
+			<if test="username != null"> username,
+			</if>
+			<if test="password != null"> password,
+			</if>
+			<if test="email != null"> email,
+			</if>
+			<if test="phone != null"> phone,
+			</if>
+			<if test="nicheng != null"> niCheng,
+			</if>
+			<if test="deptid != null"> deptId,
+			</if>
+			<if test="status != null"> status,
+			</if>
+			<if test="lastlogintime != null"> lastLoginTime,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null"> #{id,jdbcType=VARCHAR},
+			</if>
+			<if test="userid != null"> #{userid,jdbcType=VARCHAR},
+			</if>
+			<if test="usergroupid != null"> #{usergroupid,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null"> #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null"> #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null"> #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null"> #{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="nicheng != null"> #{nicheng,jdbcType=VARCHAR},
+			</if>
+			<if test="deptid != null"> #{deptid,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null"> #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="lastlogintime != null"> #{lastlogintime,jdbcType=DATE},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.hanfuxin.rbac.model.RbacUserTb">
+		update rbacuser_tb
+		<set>
+			<if test="userid != null"> userId = #{userid,jdbcType=VARCHAR},
+			</if>
+			<if test="usergroupid != null"> usergroupId = #{usergroupid,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null"> username = #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null"> password = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null"> email = #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null"> phone = #{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="nicheng != null"> niCheng = #{nicheng,jdbcType=VARCHAR},
+			</if>
+			<if test="deptid != null"> deptId = #{deptid,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null"> status = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="lastlogintime != null"> lastLoginTime = #{lastlogintime,jdbcType=DATE},
+			</if>
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.hanfuxin.rbac.model.RbacUserTb"> update rbacuser_tb set userId = #{userid,jdbcType=VARCHAR}, usergroupId = #{usergroupid,jdbcType=VARCHAR}, username = #{username,jdbcType=VARCHAR}, password = #{password,jdbcType=VARCHAR}, email = #{email,jdbcType=VARCHAR}, phone = #{phone,jdbcType=VARCHAR}, niCheng = #{nicheng,jdbcType=VARCHAR}, deptId = #{deptid,jdbcType=VARCHAR}, status = #{status,jdbcType=VARCHAR}, lastLoginTime = #{lastlogintime,jdbcType=DATE} where id = #{id,jdbcType=VARCHAR}
+	</update>
+</mapper>

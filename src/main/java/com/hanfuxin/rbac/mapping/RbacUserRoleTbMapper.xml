@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hanfuxin.rbac.dao.RbacUserRoleTbMapper">
+	<resultMap id="BaseResultMap" type="com.hanfuxin.rbac.model.RbacUserRoleTb">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="usergroupid" property="usergroupid" jdbcType="VARCHAR" />
+		<result column="rolegroupid" property="rolegroupid" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List"> id, usergroupid, rolegroupid
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from rbacuserrole_tb where id = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String"> delete from rbacuserrole_tb where id = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.hanfuxin.rbac.model.RbacUserRoleTb"> insert into rbacuserrole_tb (id, usergroupid, rolegroupid ) values (#{id,jdbcType=VARCHAR}, #{usergroupid,jdbcType=VARCHAR}, #{rolegroupid,jdbcType=VARCHAR} )
+	</insert>
+	<insert id="insertSelective" parameterType="com.hanfuxin.rbac.model.RbacUserRoleTb">
+		insert into rbacuserrole_tb
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null"> id,
+			</if>
+			<if test="usergroupid != null"> usergroupid,
+			</if>
+			<if test="rolegroupid != null"> rolegroupid,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null"> #{id,jdbcType=VARCHAR},
+			</if>
+			<if test="usergroupid != null"> #{usergroupid,jdbcType=VARCHAR},
+			</if>
+			<if test="rolegroupid != null"> #{rolegroupid,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.hanfuxin.rbac.model.RbacUserRoleTb">
+		update rbacuserrole_tb
+		<set>
+			<if test="usergroupid != null"> usergroupid = #{usergroupid,jdbcType=VARCHAR},
+			</if>
+			<if test="rolegroupid != null"> rolegroupid = #{rolegroupid,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.hanfuxin.rbac.model.RbacUserRoleTb"> update rbacuserrole_tb set usergroupid = #{usergroupid,jdbcType=VARCHAR}, rolegroupid = #{rolegroupid,jdbcType=VARCHAR} where id = #{id,jdbcType=VARCHAR}
+	</update>
+</mapper>

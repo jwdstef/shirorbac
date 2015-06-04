@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hanfuxin.rbac.dao.RbacAccessTbMapper">
+	<resultMap id="BaseResultMap" type="com.hanfuxin.rbac.model.RbacAccessTb">
+		<id column="id" property="id" jdbcType="VARCHAR" />
+		<result column="accessname" property="accessname" jdbcType="VARCHAR" />
+		<result column="accessId" property="accessid" jdbcType="VARCHAR" />
+		<result column="accessGroupid" property="accessgroupid" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List"> id, accessname, accessId, accessGroupid
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from rbacaccess_tb where id = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String"> delete from rbacaccess_tb where id = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.hanfuxin.rbac.model.RbacAccessTb"> insert into rbacaccess_tb (id, accessname, accessId, accessGroupid) values (#{id,jdbcType=VARCHAR}, #{accessname,jdbcType=VARCHAR}, #{accessid,jdbcType=VARCHAR}, #{accessgroupid,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.hanfuxin.rbac.model.RbacAccessTb">
+		insert into rbacaccess_tb
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null"> id,
+			</if>
+			<if test="accessname != null"> accessname,
+			</if>
+			<if test="accessid != null"> accessId,
+			</if>
+			<if test="accessgroupid != null"> accessGroupid,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null"> #{id,jdbcType=VARCHAR},
+			</if>
+			<if test="accessname != null"> #{accessname,jdbcType=VARCHAR},
+			</if>
+			<if test="accessid != null"> #{accessid,jdbcType=VARCHAR},
+			</if>
+			<if test="accessgroupid != null"> #{accessgroupid,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.hanfuxin.rbac.model.RbacAccessTb">
+		update rbacaccess_tb
+		<set>
+			<if test="accessname != null"> accessname = #{accessname,jdbcType=VARCHAR},
+			</if>
+			<if test="accessid != null"> accessId = #{accessid,jdbcType=VARCHAR},
+			</if>
+			<if test="accessgroupid != null"> accessGroupid = #{accessgroupid,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.hanfuxin.rbac.model.RbacAccessTb"> update rbacaccess_tb set accessname = #{accessname,jdbcType=VARCHAR}, accessId = #{accessid,jdbcType=VARCHAR}, accessGroupid = #{accessgroupid,jdbcType=VARCHAR} where id = #{id,jdbcType=VARCHAR}
+	</update>
+</mapper>
